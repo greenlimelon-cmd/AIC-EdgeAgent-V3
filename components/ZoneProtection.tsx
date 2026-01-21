@@ -31,22 +31,22 @@ const ZoneProtection: React.FC = () => {
         {/* 2 Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           
-          {/* Card 1: Custom Zones (Purple Focus) */}
-          <div className="bg-[#0a0a0a] rounded-[3rem] p-8 md:p-10 border border-white/10 hover:border-purple-500/30 transition-all duration-500 group flex flex-col overflow-hidden relative shadow-2xl">
+          {/* Card 1: Custom Zones (Purple Focus) - Compact Spacing */}
+          <div className="bg-[#0a0a0a] rounded-[3rem] p-6 md:p-8 border border-white/10 hover:border-purple-500/30 transition-all duration-500 group flex flex-col overflow-hidden relative shadow-2xl">
              <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
              
              {/* Header */}
-             <div className="relative z-10 mb-8">
-               <div className="mb-6">
+             <div className="relative z-10 mb-4">
+               <div className="mb-4">
                   <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 border border-purple-500/20 shadow-[0_0_20px_rgba(168,85,247,0.15)]">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
                   </div>
                </div>
                
-               <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-3">
+               <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-2">
                  自定义区域
                </h3>
-               <p className="text-lg md:text-xl font-bold text-purple-400 mb-6">
+               <p className="text-lg md:text-xl font-bold text-purple-400 mb-4">
                  "每个家都不一样，由你定义。"
                </p>
 
@@ -57,9 +57,9 @@ const ZoneProtection: React.FC = () => {
                </div>
              </div>
 
-             {/* Visual */}
-             <div className="relative w-full h-[306px] bg-black rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden mb-8 group-hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] transition-shadow">
-                <img src="https://edgeagent2025.github.io/aic_landing/three_layer.PNG" className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" alt="Zone Map" />
+             {/* Visual - Taller & Fully Contain */}
+             <div className="relative w-full h-[450px] bg-black rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden mb-4 group-hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] transition-shadow">
+                <img src="https://edgeagent2025.github.io/aic_landing/three_layer.PNG" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" alt="Zone Map" />
                 
                 {/* UI Overlay */}
                 <div className="absolute top-4 right-4 flex flex-col gap-2">
@@ -75,13 +75,13 @@ const ZoneProtection: React.FC = () => {
              </div>
 
              {/* List */}
-             <div className="mt-auto bg-zinc-950/50 rounded-2xl border border-white/5 p-6">
-                <ul className="space-y-4">
-                   <li className="flex items-start gap-3 text-base text-zinc-300 font-medium">
+             <div className="mt-auto bg-zinc-950/50 rounded-2xl border border-white/5 p-5">
+                <ul className="space-y-3">
+                   <li className="flex items-start gap-3 text-sm md:text-base text-zinc-300 font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0 mt-2"></div>
                       <span><span className="text-white font-bold">三圈防线：</span>警戒区(远) / 边界区(中) / 核心区(近)，层层递进。</span>
                    </li>
-                   <li className="flex items-start gap-3 text-base text-zinc-300 font-medium">
+                   <li className="flex items-start gap-3 text-sm md:text-base text-zinc-300 font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0 mt-2"></div>
                       <span><span className="text-white font-bold">个性化热区：</span>泳池、车道、侧门、围栏缺口等重点关注。</span>
                    </li>
@@ -89,22 +89,22 @@ const ZoneProtection: React.FC = () => {
              </div>
           </div>
 
-          {/* Card 2: Personalized Rules (Amber Focus) */}
-          <div className="bg-[#0a0a0a] rounded-[3rem] p-8 md:p-10 border border-white/10 hover:border-amber-500/30 transition-all duration-500 group flex flex-col overflow-hidden relative shadow-2xl">
+          {/* Card 2: Personalized Rules (Amber Focus) - Compact Spacing */}
+          <div className="bg-[#0a0a0a] rounded-[3rem] p-6 md:p-8 border border-white/10 hover:border-amber-500/30 transition-all duration-500 group flex flex-col overflow-hidden relative shadow-2xl">
              <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
              
              {/* Header */}
-             <div className="relative z-10 mb-8">
-               <div className="mb-6">
+             <div className="relative z-10 mb-4">
+               <div className="mb-4">
                   <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 border border-amber-500/20 shadow-[0_0_20px_rgba(245,158,11,0.15)]">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                   </div>
                </div>
                
-               <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-3">
+               <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight mb-2">
                  个性化规则
                </h3>
-               <p className="text-lg md:text-xl font-bold text-amber-400 mb-6">
+               <p className="text-lg md:text-xl font-bold text-amber-400 mb-4">
                  "不同区域，不同策略。"
                </p>
 
@@ -115,12 +115,12 @@ const ZoneProtection: React.FC = () => {
                </div>
              </div>
 
-             {/* Visual */}
-             <div className="relative w-full h-[306px] bg-black rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden mb-8 group-hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] transition-shadow">
-                <img src="https://edgeagent2025.github.io/aic_landing/level_response.jpg" className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-transform duration-700" alt="Rule Logic" />
+             {/* Visual - Taller & Fully Contain */}
+             <div className="relative w-full h-[450px] bg-black rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden mb-4 group-hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] transition-shadow">
+                <img src="https://edgeagent2025.github.io/aic_landing/level_response.jpg" className="absolute inset-0 w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" alt="Rule Logic" />
                 
                 {/* UI Overlay - Logic Flow */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="bg-zinc-900/90 backdrop-blur-xl p-4 rounded-xl border border-white/10 shadow-2xl flex flex-col gap-3 max-w-[200px]">
                         <div className="flex justify-between items-center text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
                             <span>Zone: Yard</span>
@@ -136,13 +136,13 @@ const ZoneProtection: React.FC = () => {
              </div>
 
              {/* List */}
-             <div className="mt-auto bg-zinc-950/50 rounded-2xl border border-white/5 p-6">
-                <ul className="space-y-4">
-                   <li className="flex items-start gap-3 text-base text-zinc-300 font-medium">
+             <div className="mt-auto bg-zinc-950/50 rounded-2xl border border-white/5 p-5">
+                <ul className="space-y-3">
+                   <li className="flex items-start gap-3 text-sm md:text-base text-zinc-300 font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2"></div>
                       <span><span className="text-white font-bold">分区布撤防：</span>回家只撤核心区，外围继续守；离家全域布防。</span>
                    </li>
-                   <li className="flex items-start gap-3 text-base text-zinc-300 font-medium">
+                   <li className="flex items-start gap-3 text-sm md:text-base text-zinc-300 font-medium">
                       <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-2"></div>
                       <span><span className="text-white font-bold">分区响应：</span>同一件事在不同区域，触发不同响应（如后院仅提示，入户即报警）。</span>
                    </li>

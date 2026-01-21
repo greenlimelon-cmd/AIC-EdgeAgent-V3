@@ -29,7 +29,7 @@ const LAYERS = [
     color: 'blue',
     // Part 1: Funnel Box Data
     boxTitle: '家庭第一层防护层 (30m - 12m)',
-    boxDesc: 'DSKey™超远距离离家身份确认',
+    boxDesc: 'DSKey™超远距离家人身份确认',
     sideData: [
         '家人误报减少99%，',
         '有效减少70%非法闯入'
@@ -45,7 +45,7 @@ const LAYERS = [
     
     // Main Content Data
     subHeadline: '家庭第一层防护层',
-    headline: 'DSKey™ 超远距离离家身份确认', 
+    headline: 'DSKey™ 超远距离家人身份确认', 
     
     // Styles
     funnelWidth: 'w-[60%]',
@@ -130,7 +130,7 @@ const LAYERS = [
       },
       {
         id: 'notification',
-        title: '升级版AI智慧通知',
+        title: '升级版AI智慧Notification',
         sub: '一眼看清真相',
         detail: '通知包含缩略图、身份、位置与行为，不再是简单的 Motion Detected。',
         img: ASSETS.REPORT,

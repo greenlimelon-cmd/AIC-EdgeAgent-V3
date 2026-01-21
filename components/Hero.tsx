@@ -38,9 +38,10 @@ const Hero: React.FC = () => {
           onEnded={handleVideoEnded}
           className="w-full h-full object-cover md:object-contain md:object-right"
         >
-          <source src="https://edgeagent2025.github.io/aic_landing/aic4.mp4" type="video/mp4" />
+          <source src="https://raw.githubusercontent.com/greenlimelon-cmd/AIC-EdgeAgent-V3/main/Media/AIC%20Hero%20V2%20(1).mp4
+" type="video/mp4" />
         </video>
-        
+  
         {/* Subtle Vignette to ensure text contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
@@ -65,7 +66,7 @@ const Hero: React.FC = () => {
         {/* Descriptions - Font size reduced by ~50% */}
         <div className="space-y-3 mb-8">
           <p className="text-lg md:text-2xl font-bold text-white tracking-tight">
-            少误报、更早预警、真威胁才出手。
+            更早预警、减少误报、真威胁才响应。
           </p>
           <p className="text-sm md:text-base font-medium text-zinc-400 tracking-tight max-w-md">
             不只是摄像头，是行为识别安防系统

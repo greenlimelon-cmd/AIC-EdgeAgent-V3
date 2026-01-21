@@ -1,7 +1,78 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 const AiResponseLayer: React.FC = () => {
+  const [activeRiskLevel, setActiveRiskLevel] = useState<0 | 1 | 2 | 3>(0);
+
+  const riskLevels = [
+    {
+      id: 0,
+      label: "低风险",
+      subLabel: "Low Risk",
+      color: "bg-zinc-500",
+      textColor: "text-zinc-400",
+      zone: "外圈 (30m - 12m)",
+      behavior: "路人经过 / 正常通行",
+      systemAction: "静默处理",
+      userExp: "零打扰",
+      desc: "公共区域的正常活动。系统虽然看见了，但判断无威胁，因此保持安静，不消耗你的注意力。",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"/></svg>
+      ), // Mute
+      dotPosition: "top-[15%] right-[15%]"
+    },
+    {
+      id: 1,
+      label: "可疑",
+      subLabel: "Suspicious",
+      color: "bg-amber-500",
+      textColor: "text-amber-400",
+      zone: "中圈 (12m - 6m)",
+      behavior: "短暂停留 / 观察环境",
+      systemAction: "后台关注",
+      userExp: "无通知",
+      desc: "进入庭院边界，但尚未越界。系统开始连续追踪并在本地录像，暂不打扰用户，除非行为升级。",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M12 2v2"/><path d="M12 22v-2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M22 12h-2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+      ), // Recording/Eye
+      dotPosition: "top-[30%] right-[30%]"
+    },
+    {
+      id: 2,
+      label: "确认风险",
+      subLabel: "Confirmed",
+      color: "bg-orange-500",
+      textColor: "text-orange-500",
+      zone: "核心区 (近距离)",
+      behavior: "试探门窗 / 反复徘徊",
+      systemAction: "声光警告 + 通知",
+      userExp: "强提醒",
+      desc: "触及核心安全边界。Smart Sign 亮灯并播放语音警告“你已进入私人区域”，同时手机收到富媒体通知。",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      ), // Warning
+      dotPosition: "top-[42%] right-[42%]"
+    },
+    {
+      id: 3,
+      label: "高危",
+      subLabel: "High Risk",
+      color: "bg-red-600",
+      textColor: "text-red-500",
+      zone: "接触点 (入侵)",
+      behavior: "暴力破坏 / 持械闯入",
+      systemAction: "最高级警报",
+      userExp: "人工介入",
+      desc: "确定的入侵行为。警报声大作，系统锁定证据链，并弹窗引导用户一键报警或由专业团队介入。",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+      ), // Siren
+      dotPosition: "top-[48%] right-[48%]"
+    }
+  ];
+
+  const currentLevel = riskLevels[activeRiskLevel];
+
   return (
     <section id="ai-response-layer" className="bg-transparent text-white py-32 md:py-48 overflow-hidden border-t border-white/5 relative">
       {/* Background Ambient Glow - Reduced Opacity */}
@@ -9,7 +80,7 @@ const AiResponseLayer: React.FC = () => {
 
       <div className="max-w-screen-2xl mx-auto px-6 relative z-10">
         
-        {/* --- 1. HEADER & VALUE PROPOSITION (UPDATED TO MATCH DSKEY STYLE) --- */}
+        {/* --- 1. HEADER & VALUE PROPOSITION --- */}
         <div className="mb-20 md:mb-32 flex flex-col items-center text-center reveal">
             {/* Enhanced Badge */}
             <div className="mb-8 relative group">
@@ -51,133 +122,109 @@ const AiResponseLayer: React.FC = () => {
             </div>
         </div>
 
-        {/* --- 2. THREE HORIZONTAL CARDS (Updated Text) --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal mb-32">
-          
-          {/* 1. SPATIAL LOGIC CARD */}
-          <div className="flex flex-col bg-zinc-900/40 rounded-[3.5rem] border border-white/5 overflow-hidden group hover:border-blue-500/20 transition-all duration-700 h-full">
-            <div className="aspect-[3/2] relative overflow-hidden">
-              <img 
-                src="https://edgeagent2025.github.io/aic_landing/three_layer.PNG" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-                alt="Three Zones Protection" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
-            </div>
-            <div className="p-10 flex flex-col flex-grow">
-              <span className="text-blue-500 text-[10px] font-black tracking-[0.3em] uppercase mb-4">Spatial Logic</span>
-              <h4 className="text-2xl md:text-3xl font-black mb-6 tracking-tight text-white">三圈区域<br/><span className="text-blue-500 text-lg md:text-xl font-bold">越靠近，敏感度越高</span></h4>
-              
-              <div className="space-y-4 mt-auto">
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-zinc-600"></div>
-                    <span className="text-white font-bold text-sm">警戒区（远）</span>
-                  </div>
-                  <p className="text-zinc-400 text-xs ml-3.5">房屋外围，提前感知风险</p>
-                </div>
+        {/* --- 2. INTERACTIVE RISK ESCALATION SIMULATOR (NEW) --- */}
+        <div className="mb-32 reveal">
+            <div className="bg-zinc-900/30 rounded-[3.5rem] border border-white/5 overflow-hidden flex flex-col shadow-2xl">
                 
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-                    <span className="text-white font-bold text-sm">边界区（中）</span>
-                  </div>
-                  <p className="text-zinc-400 text-xs ml-3.5">门口/院落等关键边界</p>
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600 shadow-[0_0_8px_#2563eb]"></div>
-                    <span className="text-white font-bold text-sm">核心区（近）</span>
-                  </div>
-                  <p className="text-zinc-400 text-xs ml-3.5">室内或核心入口</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* 2. ESCALATION LOGIC CARD */}
-          <div className="flex flex-col bg-zinc-900/40 rounded-[3.5rem] border border-white/5 overflow-hidden group hover:border-blue-500/20 transition-all duration-700 h-full">
-            <div className="aspect-[3/2] relative overflow-hidden">
-              <img 
-                src="https://edgeagent2025.github.io/aic_landing/ai-deter.png" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-                alt="Four Stages Escalation" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
-            </div>
-            <div className="p-10 flex flex-col flex-grow">
-              <span className="text-blue-500 text-[10px] font-black tracking-[0.3em] uppercase mb-4">Escalation Logic</span>
-              <h4 className="text-2xl md:text-3xl font-black mb-6 tracking-tight text-white">四级升级<br/><span className="text-blue-500 text-lg md:text-xl font-bold">只在必要时升级行为</span></h4>
-              
-              <div className="space-y-4 mt-auto">
-                {[
-                  { label: "提示", desc: "只提醒陌生人，不吵家人", dot: "bg-zinc-500" },
-                  { label: "警告", desc: "灯光/语音明确告知“已越界”", dot: "bg-blue-400" },
-                  { label: "驱离", desc: "声光警笛 + 联动强力赶走", dot: "bg-blue-600" },
-                  { label: "报警", desc: "AI 验证 → 用户协助 → 升级处置", dot: "bg-red-500" }
-                ].map((item, i) => (
-                  <div key={i} className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-2">
-                      <div className={`w-1.5 h-1.5 rounded-full ${item.dot}`}></div>
-                      <span className="text-white font-bold text-sm">{item.label}</span>
+                {/* Controls Header */}
+                <div className="flex flex-col md:flex-row border-b border-white/5">
+                    <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-center min-w-[280px]">
+                        <h4 className="text-xl font-bold text-white mb-2">响应等级演示</h4>
+                        <p className="text-xs text-zinc-400">点击切换风险等级，查看系统对策。</p>
                     </div>
-                    <p className="text-zinc-400 text-[11px] ml-3.5">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* 3. SYNERGY MODES CARD */}
-          <div className="flex flex-col bg-zinc-900/40 rounded-[3.5rem] border border-white/5 overflow-hidden group hover:border-blue-500/20 transition-all duration-700 h-full">
-            <div className="aspect-[3/2] relative overflow-hidden">
-              <img 
-                src="https://edgeagent2025.github.io/aic_landing/ai_first.png" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-                alt="Synergy Modes" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
-              {/* Voice Wave Visual */}
-              <div className="absolute bottom-10 left-10 flex gap-1 items-end h-8">
-                {[0, 0.2, 0.4, 0.1, 0.3].map((delay, i) => (
-                  <div key={i} className={`w-1 bg-blue-500 rounded-full animate-[voiceWave_1s_ease-in-out_infinite]`} style={{ animationDelay: `${delay}s` }}></div>
-                ))}
-              </div>
-            </div>
-            <div className="p-10 flex flex-col flex-grow">
-              <span className="text-blue-500 text-[10px] font-black tracking-[0.3em] uppercase mb-4">Collaboration Modes</span>
-              <h4 className="text-2xl md:text-3xl font-black mb-6 tracking-tight text-white">两种协同模式<br/><span className="text-blue-500 text-lg md:text-xl font-bold">AI托管还是人工自管，选择权在你</span></h4>
-              
-              <div className="space-y-6 mt-auto">
-                <div className="bg-black/20 p-4 rounded-2xl border border-white/5">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-white font-bold text-sm">AI 托管（AI First）</span>
-                    <span className="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded">自动</span>
-                  </div>
-                  <p className="text-zinc-400 text-xs leading-relaxed">
-                    低风险时间，自动解决，不打扰你。成功处理后只发结果：<br/>
-                    <span className="text-blue-500 font-mono mt-1 block">“已驱离 / 已结束 / 未升级”</span>
-                  </p>
+                    <div className="flex-1 flex overflow-x-auto md:overflow-visible">
+                        {riskLevels.map((level) => (
+                            <button 
+                                key={level.id}
+                                onClick={() => setActiveRiskLevel(level.id as any)}
+                                className={`flex-1 min-w-[120px] p-6 flex flex-col items-center justify-center gap-2 transition-all duration-300 relative group
+                                    ${activeRiskLevel === level.id ? 'bg-white/5' : 'hover:bg-white/5'}
+                                `}
+                            >
+                                <div className={`w-3 h-3 rounded-full ${level.color} shadow-[0_0_10px_currentColor] transition-transform duration-300 ${activeRiskLevel === level.id ? 'scale-125' : 'scale-100 opacity-50'}`}></div>
+                                <span className={`text-sm font-bold uppercase tracking-wider ${activeRiskLevel === level.id ? 'text-white' : 'text-zinc-500'}`}>{level.label}</span>
+                                {activeRiskLevel === level.id && (
+                                    <div className={`absolute bottom-0 left-0 w-full h-1 ${level.color}`}></div>
+                                )}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="bg-black/20 p-4 rounded-2xl border border-white/5">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-white font-bold text-sm">人机联动（Human in the Loop）</span>
-                    <span className="text-[10px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded">协助</span>
-                  </div>
-                  <p className="text-zinc-400 text-xs leading-relaxed">
-                    面向人身风险，充分提醒用户，提供专业决策，最终执行权留给用户：<br/>
-                    <span className="text-white font-mono mt-1 block">确认 → 升级 → 联动处置</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+                {/* Content Body */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+                    
+                    {/* LEFT: Visual Map (Three Zones) */}
+                    <div className="relative bg-black flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/5 p-8">
+                        {/* Background Map Image */}
+                        <div className="relative w-full max-w-md aspect-square">
+                            <img 
+                                src="https://edgeagent2025.github.io/aic_landing/three_layer.PNG" 
+                                alt="Three Zones Map" 
+                                className="w-full h-full object-contain opacity-60"
+                            />
+                            
+                            {/* Animated Intruder Dot */}
+                            <div 
+                                className={`absolute w-6 h-6 rounded-full border-2 border-white shadow-xl z-20 transition-all duration-1000 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${currentLevel.color} ${currentLevel.dotPosition}`}
+                            >
+                                <div className="absolute inset-0 rounded-full animate-ping opacity-75 bg-current"></div>
+                            </div>
 
+                            {/* Zone Labels (Static Context) */}
+                            <div className="absolute top-[10%] left-[10%] text-[10px] text-zinc-500 font-bold uppercase tracking-widest">外圈 (30m)</div>
+                            <div className="absolute top-[25%] left-[25%] text-[10px] text-zinc-500 font-bold uppercase tracking-widest">中圈 (12m)</div>
+                            <div className="absolute top-[40%] left-[40%] text-[10px] text-zinc-500 font-bold uppercase tracking-widest">核心 (3m)</div>
+                        </div>
+                    </div>
+
+                    {/* RIGHT: System Logic Panel */}
+                    <div className="p-8 md:p-12 flex flex-col justify-center relative bg-gradient-to-br from-zinc-900/50 to-transparent">
+                        
+                        <div className="mb-10 animate-[fadeIn_0.5s_ease-out]">
+                            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border mb-6 ${currentLevel.color.replace('bg-', 'border-').replace('600', '500').replace('500', '500')}/30 bg-opacity-10`}>
+                                <span className={`text-[10px] font-black uppercase tracking-widest ${currentLevel.textColor}`}>{currentLevel.subLabel}</span>
+                            </div>
+                            
+                            <h3 className="text-3xl md:text-4xl font-black text-white mb-2 transition-all duration-300">
+                                {currentLevel.behavior}
+                            </h3>
+                            <div className="flex items-center gap-2 text-zinc-400 font-medium text-sm">
+                                <span>📍 位置: <span className="text-white">{currentLevel.zone}</span></span>
+                            </div>
+                        </div>
+
+                        <div className="space-y-6 animate-[fadeInUp_0.5s_ease-out]">
+                            {/* System Response Card */}
+                            <div className="bg-black/40 border border-white/10 rounded-2xl p-6 flex items-start gap-5">
+                                <div className={`w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center shrink-0 text-white ${currentLevel.id >= 2 ? 'animate-pulse' : ''}`}>
+                                    {currentLevel.icon}
+                                </div>
+                                <div>
+                                    <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1">System Response</div>
+                                    <h4 className={`text-xl font-bold mb-2 ${currentLevel.textColor}`}>{currentLevel.systemAction}</h4>
+                                    <p className="text-sm text-zinc-300 leading-relaxed">
+                                        {currentLevel.desc}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* User Experience Line */}
+                            <div className="flex items-center gap-4 px-2">
+                                <div className="w-1 h-12 bg-gradient-to-b from-transparent via-zinc-700 to-transparent"></div>
+                                <div>
+                                    <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-0.5">User Experience</div>
+                                    <div className="text-lg font-medium text-white">{currentLevel.userExp}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
-        {/* --- 3. NEW SECTION: ENHANCED NOTIFICATIONS (UPDATED LAYOUT) --- */}
+        {/* --- 3. ENHANCED NOTIFICATIONS (UPDATED LAYOUT) - UNCHANGED --- */}
         <div className="reveal">
             <div className="mb-12 border-l-4 border-indigo-500 pl-6">
                  <h4 className="text-3xl md:text-4xl font-black text-white mb-3 leading-tight">升级版AI智慧通知</h4>
@@ -188,7 +235,7 @@ const AiResponseLayer: React.FC = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                 
-                {/* Left: Rich Context (Large) - Swapped & Expanded */}
+                {/* Left: Rich Context (Large) */}
                 <div className="bg-zinc-900/40 rounded-[2.5rem] border border-white/5 p-8 md:p-12 relative overflow-hidden group h-full min-h-[520px] flex flex-col">
                     
                     <div className="relative z-10 mb-10">
@@ -201,10 +248,9 @@ const AiResponseLayer: React.FC = () => {
                         </p>
                     </div>
                     
-                    {/* Notification Stream - Multiple items */}
+                    {/* Notification Stream */}
                     <div className="relative z-10 flex flex-col gap-4 mt-auto">
-                        
-                        {/* Notification 1: Package */}
+                        {/* Notification 1 */}
                         <div className="w-full bg-[#2c2c2e]/90 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/10 transform transition-all duration-500 hover:scale-[1.02] hover:bg-[#3a3a3c]">
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-2">
@@ -228,7 +274,7 @@ const AiResponseLayer: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Notification 2: Person (Primary) */}
+                        {/* Notification 2 */}
                         <div className="w-full bg-[#2c2c2e] rounded-2xl p-4 shadow-2xl border border-white/10 transform transition-all duration-500 hover:scale-[1.02] scale-[1.02] z-10">
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-2">
@@ -253,7 +299,7 @@ const AiResponseLayer: React.FC = () => {
                             </div>
                         </div>
 
-                         {/* Notification 3: Stranger */}
+                         {/* Notification 3 */}
                         <div className="w-full bg-[#2c2c2e]/80 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-white/5 transform transition-all duration-500 hover:scale-[1.02] opacity-80 hover:opacity-100">
                             <div className="flex items-center justify-between mb-3">
                                 <div className="flex items-center gap-2">
@@ -283,10 +329,10 @@ const AiResponseLayer: React.FC = () => {
                     <div className="absolute top-1/2 right-0 w-64 h-64 bg-blue-600/10 blur-[80px] rounded-full pointer-events-none"></div>
                 </div>
 
-                {/* Right Column: 2 Stacked Cards (Swapped & Adjusted) */}
+                {/* Right Column: 2 Stacked Cards */}
                 <div className="flex flex-col gap-6">
                     
-                    {/* Top: Critical Alert (Moved here & adapted) */}
+                    {/* Top: Critical Alert */}
                     <div className="bg-gradient-to-br from-red-950/30 to-black rounded-[2.5rem] border border-red-900/30 p-8 relative overflow-hidden group">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(220,38,38,0.1)_0%,transparent_50%)]"></div>
                         
@@ -301,7 +347,7 @@ const AiResponseLayer: React.FC = () => {
                             </p>
                         </div>
 
-                        {/* Realistic Notification Mock - Compact Version */}
+                        {/* Realistic Notification Mock */}
                         <div className="w-full bg-[#1c1c1e] rounded-2xl border border-white/10 shadow-2xl p-4 flex gap-3 items-center transform transition-transform group-hover:scale-[1.02] duration-500 relative z-10">
                             <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.5)] animate-[pulse_2s_infinite]">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -320,7 +366,7 @@ const AiResponseLayer: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Bottom: Event Filtering (Stays here) */}
+                    {/* Bottom: Event Filtering */}
                     <div className="bg-zinc-900/40 rounded-[2.5rem] border border-white/5 p-8 relative overflow-hidden group">
                         <div className="mb-6 relative z-10">
                              <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full mb-3">
@@ -332,7 +378,7 @@ const AiResponseLayer: React.FC = () => {
                             </p>
                         </div>
 
-                        {/* Smart Filter UI based on new reference */}
+                        {/* Smart Filter UI */}
                         <div className="w-full bg-[#1c1c1e] rounded-3xl p-6 shadow-2xl border border-white/10 relative z-10 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 min-h-[180px] flex flex-col justify-center">
                             
                             {/* Background: The "Spam" list */}
@@ -350,7 +396,6 @@ const AiResponseLayer: React.FC = () => {
                             {/* Foreground: The Summary Alert */}
                             <div className="relative bg-[#2c2c2e] rounded-2xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/10 mx-2 animate-[fadeInUp_0.5s_ease-out_0.2s]">
                                 <div className="flex gap-4">
-                                    {/* Left: Icon & Text */}
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2 mb-2">
                                             <div className="w-8 h-8 rounded-lg bg-[#3b82f6] flex items-center justify-center">
@@ -365,8 +410,6 @@ const AiResponseLayer: React.FC = () => {
                                             We grouped similar alerts to avoid bothering you.
                                         </p>
                                     </div>
-
-                                    {/* Right: Stacked Thumbnails */}
                                     <div className="flex flex-col gap-1 shrink-0">
                                         <div className="w-10 h-8 rounded-md bg-zinc-800 overflow-hidden border border-white/10 relative">
                                              <img src="https://edgeagent2025.github.io/aic_landing/wubao2.png" className="w-full h-full object-cover" alt="thumb1" />

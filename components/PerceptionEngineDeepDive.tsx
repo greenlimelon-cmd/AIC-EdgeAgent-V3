@@ -115,98 +115,15 @@ const PerceptionEngineDeepDive: React.FC = () => {
 
                 </div>
 
-                {/* Right Side: Large Functional Diagram (Span 8) - VISUAL KEPT SAME, Just Context Update */}
+                {/* Right Side: Image Fill (Replaced Complex UI Diagram) */}
                 <div className="lg:col-span-8 h-full min-h-[500px] lg:min-h-[600px] flex items-stretch">
-                    <div className="relative w-full bg-zinc-900/30 border border-white/5 rounded-[3rem] p-8 lg:p-12 overflow-hidden flex flex-col items-center justify-center">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_0%,transparent_70%)]"></div>
-                        
-                        {/* Connecting Lines Background */}
-                        <div className="absolute inset-0 opacity-20 pointer-events-none">
-                            <svg className="w-full h-full">
-                                <line x1="50%" y1="10%" x2="50%" y2="90%" stroke="url(#lineGradient)" strokeWidth="2" strokeDasharray="6 6" />
-                                <defs>
-                                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stopColor="rgba(255,255,255,0.05)" />
-                                        <stop offset="50%" stopColor="#3b82f6" />
-                                        <stop offset="100%" stopColor="rgba(255,255,255,0.05)" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-
-                        {/* Functional Flow Diagram */}
-                        <div className="relative z-10 w-full max-w-3xl flex flex-col items-center gap-10">
-                            
-                            {/* TOP: INPUT STREAM */}
-                            <div className="flex flex-col items-center animate-[fadeIn_1s_ease-out]">
-                                <div className="bg-black/80 backdrop-blur border border-zinc-700 px-4 py-1.5 rounded-full mb-6 shadow-xl">
-                                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">Raw Video Stream</span>
-                                </div>
-                                <div className="flex gap-4">
-                                     <div className="w-32 h-20 bg-zinc-800 rounded-lg border border-white/5 flex items-center justify-center opacity-50 scale-90">Frame -1</div>
-                                     <div className="w-40 h-24 bg-zinc-900 rounded-xl border border-blue-500/30 flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.1)] relative">
-                                         <span className="text-white font-bold">Current Frame</span>
-                                         <div className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                                     </div>
-                                     <div className="w-32 h-20 bg-zinc-800 rounded-lg border border-white/5 flex items-center justify-center opacity-50 scale-90">Frame +1</div>
-                                </div>
-                            </div>
-
-                            {/* CENTER: ENGINE (The Big Stage) */}
-                            <div className="w-full bg-gradient-to-b from-blue-900/10 to-indigo-900/10 rounded-[2.5rem] border border-blue-500/20 p-8 lg:p-12 relative overflow-hidden backdrop-blur-sm animate-[scaleIn_0.8s_ease-out_0.2s] flex flex-col items-center">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
-                                
-                                <div className="text-center mb-8">
-                                    <span className="text-blue-400 text-[10px] font-black tracking-[0.3em] uppercase">Context Understanding Engine</span>
-                                </div>
-
-                                <div className="grid grid-cols-3 gap-8 w-full items-center relative z-10">
-                                    {/* Node 1 */}
-                                    <div className="flex flex-col items-center gap-3">
-                                        <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-black border border-blue-500 flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-                                            <span className="text-2xl">🆔</span>
-                                        </div>
-                                        <span className="text-xs font-bold text-zinc-300">WHO</span>
-                                    </div>
-
-                                    {/* Node 2 */}
-                                    <div className="flex flex-col items-center gap-3">
-                                        <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl bg-black border-2 border-indigo-500 flex items-center justify-center shadow-[0_0_40px_rgba(99,102,241,0.5)] z-10">
-                                            <span className="text-3xl">🏃</span>
-                                        </div>
-                                        <span className="text-xs font-bold text-white">WHAT</span>
-                                    </div>
-
-                                    {/* Node 3 */}
-                                    <div className="flex flex-col items-center gap-3">
-                                        <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-black border border-purple-500 flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.3)]">
-                                            <span className="text-2xl">🏡</span>
-                                        </div>
-                                        <span className="text-xs font-bold text-zinc-300">WHERE</span>
-                                    </div>
-                                </div>
-                                
-                                {/* Connecting Lines in Diagram */}
-                                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{zIndex:0}}>
-                                    <path d="M 20% 50% L 50% 50% L 80% 50%" stroke="rgba(255,255,255,0.1)" strokeWidth="2" strokeDasharray="4 4" />
-                                </svg>
-                            </div>
-
-                            {/* BOTTOM: DECISION */}
-                            <div className="flex flex-col items-center animate-[fadeIn_1s_ease-out_0.4s] w-full">
-                                <div className="flex items-center justify-between w-full max-w-md px-6 py-4 bg-zinc-900 border border-green-500/30 rounded-2xl shadow-[0_0_40px_rgba(34,197,94,0.1)]">
-                                    <div>
-                                        <div className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-1">Final Output</div>
-                                        <h4 className="text-lg font-bold text-white">Risk: Confirmed</h4>
-                                    </div>
-                                    <div className="text-right">
-                                        <div className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-1">Confidence</div>
-                                        <div className="text-lg font-mono text-green-500 font-bold">99.8%</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                    <div className="relative w-full bg-zinc-900/30 border border-white/5 rounded-[3rem] overflow-hidden flex flex-col items-center justify-center group shadow-2xl">
+                        <img 
+                            src="https://github.com/greenlimelon-cmd/AIC-EdgeAgent-V3/blob/main/Media/AI%20Recognize.jpg?raw=true" 
+                            alt="Context Understanding Engine" 
+                            className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-[20s] group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                     </div>
                 </div>
 

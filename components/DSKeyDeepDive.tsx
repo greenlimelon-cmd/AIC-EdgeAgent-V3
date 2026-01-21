@@ -109,17 +109,14 @@ const DSKeyDeepDive: React.FC = () => {
                     </p>
                 </div>
 
-                {/* Step 2: Signal/Reaction */}
+                {/* Step 2: Signal/Reaction (UPDATED to Image Fill) */}
                 <div className="bg-zinc-900/30 rounded-[2rem] p-6 border border-white/5 flex flex-col h-full group hover:border-green-500/30 transition-colors">
-                    <div className="relative w-full aspect-[4/3] bg-zinc-950 rounded-2xl overflow-hidden mb-6 border border-white/5 flex items-center justify-center">
-                        {/* Simulation of Smart Sign turning Green */}
-                        <div className="relative w-32 h-32 bg-zinc-900 rounded-full border-4 border-zinc-800 flex items-center justify-center shadow-2xl">
-                            <div className="absolute inset-0 bg-green-500/20 blur-xl rounded-full animate-pulse"></div>
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            <div className="absolute bottom-[-10px] bg-green-500 text-black text-[10px] font-bold px-3 py-0.5 rounded-full">
-                                VERIFIED
-                            </div>
-                        </div>
+                    <div className="relative w-full aspect-[4/3] bg-zinc-950 rounded-2xl overflow-hidden mb-6 border border-white/5">
+                        <img 
+                            src="https://github.com/greenlimelon-cmd/AIC-EdgeAgent-V3/blob/main/Media/Auto%20armed.gif?raw=true" 
+                            className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105" 
+                            alt="Smart Sign Verified"
+                        />
                         <div className="absolute top-4 left-4 bg-zinc-700 text-white text-[10px] font-bold px-2 py-1 rounded">
                             STEP 2
                         </div>
@@ -223,7 +220,7 @@ const DSKeyDeepDive: React.FC = () => {
                      
                      {/* Scene Image: Using ai-deter.png for scene representation */}
                      <img 
-                        src="https://edgeagent2025.github.io/aic_landing/ai-deter.png" 
+                        src="https://github.com/greenlimelon-cmd/AIC-EdgeAgent-V3/blob/main/Media/smart%20sign.png?raw=true" 
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-[10s] group-hover:scale-110 opacity-80 group-hover:opacity-100"
                         alt="Smart Sign Deterring Stranger"
                      />

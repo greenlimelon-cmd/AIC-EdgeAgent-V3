@@ -59,7 +59,7 @@ const ProfessionalDecisions: React.FC = () => {
                         <div className="inline-block px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-black uppercase tracking-widest mb-4">
                             Step 1
                         </div>
-                        <h3 className="text-4xl md:text-5xl font-black text-white leading-none tracking-tight">还原时间真相</h3>
+                        <h3 className="text-4xl md:text-5xl font-black text-white leading-none tracking-tight">上下文综合判断</h3>
                     </div>
                     <p className="text-lg md:text-xl text-zinc-400 font-medium leading-relaxed max-w-3xl pb-1">
                         AI 不局限于单帧画面，而是调取行为上下文深度分析：<br className="hidden md:block"/>
@@ -75,7 +75,7 @@ const ProfessionalDecisions: React.FC = () => {
                         <div className="relative w-full h-full min-h-[500px] lg:min-h-[600px] bg-zinc-900 rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl group">
                              {/* Background Image - Clean */}
                              <img 
-                                src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop" 
+                                src="https://github.com/greenlimelon-cmd/AIC-EdgeAgent-V3/blob/main/Media/AI%20judgment.png?raw=true" 
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[20s] ease-linear group-hover:scale-105" 
                                 alt="Surveillance Feed" 
                              />
@@ -178,32 +178,39 @@ const ProfessionalDecisions: React.FC = () => {
             </div>
 
             {/* --- STEP 2: PROFESSIONAL ADJUDICATION (Updated Copy) --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center animate-[fadeIn_1s_ease-out_0.9s]">
-                 {/* Visual Placeholder for Step 2 (Cleaned up) */}
-                 <div className="order-1 lg:order-1 lg:col-span-7 relative aspect-square md:aspect-[16/10] bg-zinc-950 rounded-[3rem] border border-white/10 overflow-hidden group shadow-2xl">
-                     <div className="absolute inset-0 bg-gradient-to-bl from-zinc-900 to-black"></div>
-                     <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px'}}></div>
-                     
-                     {/* Logic Flow Visual (Image Only) */}
-                     <div className="absolute inset-0 flex items-center justify-center p-8">
-                        <img 
-                            src="https://edgeagent2025.github.io/aic_landing/logic_flow.png" 
-                            alt="Professional Adjudication Logic Flow" 
-                            className="w-full h-full object-contain"
-                        />
-                     </div>
-                </div>
-
-                <div className="order-2 lg:order-2 lg:col-span-5 animate-[fadeIn_1s_ease-out_0.6s]">
-                    <div className="inline-block px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs font-black uppercase tracking-widest mb-6">
-                        Step 2
+            <div>
+                {/* Step 2 Header - Moved OUTSIDE the grid to match Step 1 */}
+                <div className="mb-12 flex flex-col md:flex-row md:items-end gap-6 md:gap-12 animate-[fadeIn_1s_ease-out_0.6s]">
+                    <div>
+                        <div className="inline-block px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full text-red-400 text-xs font-black uppercase tracking-widest mb-4">
+                            Step 2
+                        </div>
+                        <h3 className="text-4xl md:text-5xl font-black text-white leading-none tracking-tight">专业研判AI</h3>
                     </div>
-                    <h3 className="text-4xl md:text-5xl font-black text-white mb-6">专业研判AI</h3>
-                    <p className="text-xl text-zinc-400 font-light mb-8 leading-relaxed">
+                    <p className="text-lg md:text-xl text-zinc-400 font-medium leading-relaxed max-w-3xl pb-1">
                         像安防专家一样思考，只为每一次准确判断。
                     </p>
-                    
-                    <div className="flex flex-col gap-6">
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch animate-[fadeIn_1s_ease-out_0.9s]">
+                     {/* Visual Placeholder for Step 2 (Left Side) */}
+                     {/* Added 'h-full' and 'object-cover' to ensure it stretches to match the right column height */}
+                     <div className="order-1 lg:order-1 lg:col-span-7 relative bg-zinc-950 rounded-[3rem] border border-white/10 overflow-hidden group shadow-2xl h-full min-h-[300px]">
+                         <div className="absolute inset-0 bg-gradient-to-bl from-zinc-900 to-black"></div>
+                         <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px'}}></div>
+                         
+                         {/* Logic Flow Visual (Image Only) */}
+                         <div className="absolute inset-0 flex items-center justify-center p-8">
+                            <img 
+                                src="https://github.com/greenlimelon-cmd/AIC-EdgeAgent-V3/blob/main/Media/AI%20Judgement2.jpg?raw=true" 
+                                alt="Professional Adjudication Logic Flow" 
+                                className="w-full h-full object-contain"
+                            />
+                         </div>
+                    </div>
+
+                    {/* Right Side: Content Boxes (Now only contains the boxes, so Left stretches to this height) */}
+                    <div className="order-2 lg:order-2 lg:col-span-5 flex flex-col justify-center gap-6 h-full">
                         {/* Card 1: 10 Billion Combinations */}
                         <div className="bg-[#1c1c1e] rounded-[1.5rem] p-6 md:p-8 border border-white/5 relative overflow-hidden group hover:border-red-500/30 transition-all duration-300">
                              <div className="flex items-start justify-between mb-6">

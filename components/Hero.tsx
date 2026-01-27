@@ -38,8 +38,7 @@ const Hero: React.FC = () => {
           onEnded={handleVideoEnded}
           className="w-full h-full object-cover md:object-contain md:object-right"
         >
-          <source src="https://raw.githubusercontent.com/greenlimelon-cmd/AIC-EdgeAgent-V3/main/Media/AIC%20Hero%20V2%20(1).mp4
-" type="video/mp4" />
+          <source src="https://github.com/greenlimelon-cmd/AIC-EdgeAgent-V3/blob/main/AIC%20Hero%20V2-2.mp4?raw=true" type="video/mp4" />
         </video>
   
         {/* Subtle Vignette to ensure text contrast */}
